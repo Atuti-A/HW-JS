@@ -35,8 +35,8 @@ body {
 }
 
 .cart-button {
-  background-color: #999b84;
-  color: #f7f0c6;
+  background-color: #FFD7D7;
+  color: #915858;
   border: none;
   width: 100px;
   height: 30px;
@@ -51,14 +51,16 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  background-color: #f7f0c6;
-  color: #999b84;
+  background-color: #915858;
+  color: #FFD7D7;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 200px;
+  width: 185px;
   height: 100%;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+  border-radius: 100px;
+  margin-bottom: 50px;
 }
 /*# sourceMappingURL=style.css.map */
