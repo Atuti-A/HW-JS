@@ -5,16 +5,21 @@ const goods = [
     { title: 'Shoes', price: 250 },
 ];
 
-const GET_GOODS_ITEMS = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses/catalogData.json'
-const GET_BASKET_GOODS_ITEMS = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses/getBasket.json'
+const BASE_URL = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses/';
+const GET_GOODS_ITEMS = `${BASE_URL}catalogData.json`
+const GET_BASKET_GOODS_ITEMS = `${BASE_URL}getBasket.json`
 
-function service(url, callback) {
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', url);
-    xhr.send();
-    xhr.onload = () => {
-        callback(JSON.parse(xhr.response))
-    }
+function service(url) {
+    return new Promise((resolve) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', url);
+        xhr.send();
+        xhr.onload = () => {
+            if (xhr.readyState === 4) {
+                resolve(JSON.parse(xhr.response))
+            }
+        }
+    })
 }
 
 class GoodsItem {
@@ -31,13 +36,22 @@ class GoodsItem {
     `;
     }
 }
+
 class GoodsList {
     items = [];
+    filteredItems = []
     fetchGoods(callback) {
-        service(GET_GOODS_ITEMS, (data) => {
+        const prom = service(GET_GOODS_ITEMS);
+        prom.then((data) => {
             this.items = data;
+            this.filteredItems = data;
             callback()
-        });
+        })
+    }
+    filterItems(value) {
+        this.filteredItems = this.items.filter(({ product_name }) => {
+            return product_name.match(new RegExp(value, 'gui'))
+        })
     }
     calculatePrice() {
         return this.items.reduce((prev, { price }) => {
@@ -45,7 +59,7 @@ class GoodsList {
         }, 0)
     }
     render() {
-        const goods = this.items.map(item => {
+        const goods = this.filteredItems.map(item => {
             const goodItem = new GoodsItem(item);
             return goodItem.render()
         }).join('');
@@ -56,10 +70,9 @@ class GoodsList {
 
 class BasketGoodsList {
     items = [];
-    fetchGoods(callback) {
+    fetchGoods() {
         service(GET_BASKET_GOODS_ITEMS, (data) => {
             this.items = data.contents;
-            callback()
         });
     }
 }
@@ -68,3 +81,12 @@ const goodsList = new GoodsList();
 goodsList.fetchGoods(() => {
     goodsList.render();
 });
+
+const basketGoodsList = new BasketGoodsList();
+basketGoodsList.fetchGoods();
+
+document.getElementsByClassName('search-button')[0].addEventListener('click', () => {
+    const value = document.getElementsByClassName('goods-search')[0].value;
+    goodsList.filterItems(value);
+    goodsList.render();
+})
