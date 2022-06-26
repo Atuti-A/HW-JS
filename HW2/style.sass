@@ -10,7 +10,7 @@ body
 
 .header
     display: flex
-    height: 75px
+    height: 120px
     margin-bottom: 20px
     align-content: center
     flex-direction: column
@@ -24,16 +24,22 @@ body
 .item
     display: flex
     flex-wrap: wrap
-    justify-content: center
     align-content: center
+    justify-content: space-around
 
 .cart-button
     background-color: #FFD7D7
     color: #915858
     border: none
     width: 100px
-    height: 30px
+    height: 60px
     border-radius: 50px 50px 50px 50px
+    display: flex
+    justify-content: space-around
+    align-items: center
+
+    &:hover path
+        fill: #321e25
 
 .goods-search
     border-radius: 30px
@@ -47,7 +53,7 @@ body
     border-color: #915858
     background-color: #FFD7D7
 
-.goods-item
+.goods-list
     display: flex
     flex-direction: column
     background-color: #915858
@@ -58,3 +64,25 @@ body
     justify-content: space-around
     border-radius: 100px
     margin-bottom: 50px
+
+.cart
+    position: fixed
+    width: 80%
+    height: 100%
+    display: flex
+    background-color: #FFD7D7
+    justify-content: center
+    align-items: flex-start
+    align-content: space-around
+    color: #915858
+
+    &_text
+        display: flex
+        justify-content: space-between
+        align-items: center
+        width: 97%
+        padding-top: 10px
+        align-content: center
+
+    &_text:hover path
+        fill: #321e25

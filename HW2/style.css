@@ -15,7 +15,7 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  height: 75px;
+  height: 120px;
   margin-bottom: 20px;
   -ms-flex-line-pack: center;
       align-content: center;
@@ -41,11 +41,10 @@ body {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   -ms-flex-line-pack: center;
       align-content: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
 .cart-button {
@@ -53,8 +52,20 @@ body {
   color: #915858;
   border: none;
   width: 100px;
-  height: 30px;
+  height: 60px;
   border-radius: 50px 50px 50px 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.cart-button:hover path {
+  fill: #321e25;
 }
 
 .goods-search {
@@ -71,7 +82,7 @@ body {
   background-color: #FFD7D7;
 }
 
-.goods-item {
+.goods-list {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -90,5 +101,44 @@ body {
       justify-content: space-around;
   border-radius: 100px;
   margin-bottom: 50px;
+}
+
+.cart {
+  position: fixed;
+  width: 80%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #FFD7D7;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -ms-flex-line-pack: distribute;
+      align-content: space-around;
+  color: #915858;
+}
+
+.cart_text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 97%;
+  padding-top: 10px;
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+
+.cart_text:hover path {
+  fill: #321e25;
 }
 /*# sourceMappingURL=style.css.map */
