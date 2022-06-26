@@ -82,7 +82,7 @@ body {
   background-color: #FFD7D7;
 }
 
-.goods-item {
+.goods-list {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

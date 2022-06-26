@@ -20,16 +20,12 @@
                             fill="#915858" />
                     </svg></a>{{calculatePrice}}</button>
             <div class="search">
-                <input type="text" class="goods-search" v-model="searchValue" />
-                <!-- <button class="search-button" type="button">Искать</button> -->
+                <custom-search v-model="search"></custom-search>
             </div>
         </header>
         <main class="item">
-            <div class="goods-list center" v-for="item in filteredItems">
-                <div class="goods-item">
-                    <h3>{{ item.product_name }}</h3>
-                    <p>{{ item.price }}</p>
-                </div>
+            <div class="goods-list center">
+                <good v-for="item in filteredItems" :item="item"></good>
             </div>
             <div class="cart" v-if="isVisibleCart">
                 <div class="cart_text">Корзина<svg @click="setVisibleCart" class="close" width="18" height="18"

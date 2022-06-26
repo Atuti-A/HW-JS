@@ -7,7 +7,25 @@ function service(url) {
         .then((res) => res.json())
 }
 
-window.onload = () => {
+function init() {
+    Vue.component('custom-search', {
+        template: `
+        <input type="text" class="goods-search" v-model="searchValue" />
+        `
+    })
+
+    Vue.component('good', {
+        props: [
+            'item'
+        ],
+        template: `
+        < div class= "goods-item" >
+                <h3>{{ item.product_name }}</h3>
+                <p>{{ item.price }}</p>
+            </div>
+    `
+    })
+
     const app = new Vue({
         el: '#root',
         data: {
@@ -44,3 +62,4 @@ window.onload = () => {
         }
     })
 }
+window.onload = init
